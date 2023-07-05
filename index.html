@@ -3,63 +3,6 @@
 <head>
   <title>Daily Report</title>
   <style>
-    /* CSS styles */
-
-    /* ... (your existing CSS styles) ... */
-
-    .save-form {
-      text-align: center;
-      margin-top: 20px;
-    }
-
-    .save-form input {
-      margin-right: 10px;
-    }
-
-    .save-form button {
-      margin-top: 10px;
-    }
-  </style>
-  <script>
-    function saveTable() {
-      var table = document.getElementById("myTable");
-      var html = table.outerHTML;
-      var student = document.getElementById("student").value;
-      var date = document.getElementById("date").value;
-
-      var data = {
-        student: student,
-        date: date,
-        html: html
-      };
-
-      fetch('/save', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      })
-        .then(function(response) {
-          if (response.ok) {
-            alert('Table saved successfully.');
-          } else {
-            alert('Failed to save table.');
-          }
-        })
-        .catch(function(error) {
-          console.error('Error:', error);
-        });
-    }
-  </script>
-</head>
-<body onload="generateTable()">
-  <!DOCTYPE html>
-<html>
-<head>
-  <title>Daily Report</title>
-  <script src="https://unpkg.com/html-docx-js/dist/html-docx.js"></script>
-  <style>
     body {
       font-family: Arial, sans-serif;
     }
@@ -118,15 +61,15 @@
       var table = document.getElementById("myTable");
       var data = [
         ["Student's Name:", ""],
-        ["Teacher's Name:", ""],
+        ["Teachers' Name:", ""],
         ["Book Information:", ""],
-        ["Comprehension and Listening", ""],
-        ["Fluency", ""],
+        ["Comprehension and Listening:", ""],
+        ["Fluency:", ""],
         ["Pronunciation:", ""],
-        ["Vocabulary:", ""],
-        ["Grammar:", ""],
+        ["Vocabulary", ""],
+        ["Grammar", ""],
         ["Memorized Sentences:", ""],
-        ["Teacher's Comment:", ""]
+        ["Teacher's Comment:", ""],
       ];
 
       for (var i = 0; i < data.length; i++) {
@@ -150,11 +93,6 @@
       textarea.style.height = textarea.scrollHeight + 'px';
     }
 
-    function updateData(input, row, col) {
-      var table = document.getElementById("myTable");
-      table.rows[row + 1].cells[col].innerHTML = input.value;
-    }
-
     function downloadTable() {
       var table = document.getElementById("myTable");
       var html = table.outerHTML;
@@ -173,26 +111,12 @@
   <h1>Daily Report</h1>
   <table id="myTable">
     <tr>
-      <th>Column 1</th>
-      <th>Column 2</th>
+      <th>Indicators</th>
+      <th>Details</th>
     </tr>
   </table>
   <div id="download-btn">
     <button onclick="downloadTable()">Download Report</button>
-  </div>
-</body>
-</html>
->
-
-  <!-- Save form -->
-  <div class="save-form">
-    <label for="student">Student:</label>
-    <input type="text" id="student" placeholder="Enter student name">
-    <br>
-    <label for="date">Date:</label>
-    <input type="date" id="date">
-    <br>
-    <button onclick="saveTable()">Save Table</button>
   </div>
 </body>
 </html>
